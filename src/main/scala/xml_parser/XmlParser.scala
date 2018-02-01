@@ -74,7 +74,7 @@ object XmlParser extends App {
   val lines = Source.fromFile("src/main/resources/test1.fodt").mkString
 
   def findAndReplace(str: String) = {
-    val regexps = generatePossibleRegExps(FilePlaceholders).filter(_.lengthCompare(10)>0)
+    val regexps = generatePossibleRegExps(FilePlaceholders).filter(_.lengthCompare(10)<0) //reduce possiblity
     regexps.foreach { rawRegexp =>
 
       val regexp = s"(?s)($rawRegexp)".r
