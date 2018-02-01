@@ -1,7 +1,11 @@
 package xml_parser
 
+import java.io.StringReader
+
 import org.w3c.dom._
 import javax.xml.parsers._
+
+import org.xml.sax.InputSource
 
 import scala.io.Source
 
@@ -9,7 +13,9 @@ object SaxParser extends App {
 
   val factory = DocumentBuilderFactory.newInstance()
   val builder = factory.newDocumentBuilder()
-  val doc = builder.parse(Source.fromFile("src/main/resources/test1.fodt").mkString)
+  val xmlString = Source.fromFile("src/main/resources/test1.fodt").mkString
+  val doc = builder.parse(new InputSource(new StringReader(xmlString)))
+
 
   def path: Node => String = {
     case document: Document => ""
