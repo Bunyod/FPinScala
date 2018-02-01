@@ -63,7 +63,7 @@ object XmlParser extends App {
       case h :: tail =>
         val tmp = originalStr.substring(prev, h)
         val rem = originalStr.substring(h + 1, originalStr.length)
-        go(originalStr, h + 1, tail, rem, res + tmp + "(<text:[^<]{1,40}>" + originalStr.charAt(h) + ".+?<text:p>)")
+        go(originalStr, h + 1, tail, rem, res + tmp + ".*" + originalStr.charAt(h) + ".*.?")
       case Nil => res + rem
     }
     go(originalStr, 0, diff, "", "")
@@ -74,17 +74,18 @@ object XmlParser extends App {
   val lines = Source.fromFile("src/main/resources/test1.fodt").mkString
 
   def findAndReplace(str: String) = {
-    val regexps = generatePossibleRegExps(FilePlaceholders)
-//    regexps.foreach { rawRegexp =>
+    val regexps = generatePossibleRegExps(FilePlaceholders).filter(_.length>10)
+    regexps.foreach { rawRegexp =>
 
-//      val regexp = s"(?s)($rawRegexp)".r
-//    val regexp = "(<text:[^>].*CUR.*<text:.*.>R.*[<|</].*>ENT_DATE.*.+?</text:p>)".r
+      val regexp = s"(?s)($rawRegexp)".r
+//    val regexp = "CUR.*<text:.*.>R.*[<|</].*>ENT_DATE.*.+?</text:p>)".r
 //    val regexp = "(<text:span.*?>CURR.*{1,20}.+?ENT_DATE)".r
-    val regexp = "([^<text:span.]CURR.*?ENT_DATE)".r
+//    val regexp = "(CUR.*.?ENT_DATE)".r
+//    val regexp = "(CUR.*R.*.?ENT_DATE)".r
     println(regexp)
-    val row = regexp.findAllIn(str).toList
+    val row = regexp.findAllMatchIn(str).toList
     println(row)
-//    }
+    }
   }
   var replaceableString = findAndReplace(lines)
 
