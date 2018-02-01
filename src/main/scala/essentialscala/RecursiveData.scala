@@ -1,0 +1,7 @@
+package essentialscala
+
+object RecursiveData {
+
+  
+
+}
