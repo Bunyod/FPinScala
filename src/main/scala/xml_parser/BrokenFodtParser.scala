@@ -3,7 +3,7 @@ package xml_parser
 import scala.annotation.tailrec
 import scala.io.Source
 
-object XmlParser extends App {
+object BrokenFodtParser extends App {
 
   object CombinatorialOps {
     implicit class CombinatorialList[A](l: List[A]) {
