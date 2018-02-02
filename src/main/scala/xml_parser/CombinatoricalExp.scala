@@ -3,7 +3,7 @@ package xml_parser
 import scala.annotation.tailrec
 import scala.io.Source
 
-object BrokenFodtParser extends App {
+object CombinatoricalExp extends App {
 
   object CombinatorialOps {
     implicit class CombinatorialList[A](l: List[A]) {
@@ -69,19 +69,36 @@ object BrokenFodtParser extends App {
     go(originalStr, 0, diff, "", "")
   }
 
-//  val FilePlaceholders = Seq("FIRST_NAME", "LAST_NAME", "FULL_NAME", "CUSTOMER_PHONE", "CUSTOMER_EMAIL", "CURRENT_DATE")
+//  val FilePlaceholders = Seq("%%FIRST_NAME%%", "LAST_NAME", "FULL_NAME", "CUSTOMER_PHONE", "CUSTOMER_EMAIL", "CURRENT_DATE")
   val FilePlaceholders = Seq("CURRENT_DATE")
   val lines = Source.fromFile("src/main/resources/test1.fodt").mkString
+
+  //1st iter
+//  pattern: (>%<.*?>%)
+// replace with: >%%
+
+//  2nd iter
+//pattern:
+
+
+
+//  val percentages = "(>%<.*?>%)".r
+//  val percentages2 = "(>%%<.*?>)".r
+//  val patterns = List()
+//  def replacer(str: String): String = {
+//
+//  }
 
   def findAndReplace(str: String) = {
     val regexps = generatePossibleRegExps(FilePlaceholders).filter(_.lengthCompare(10)<0) //reduce possiblity
     regexps.foreach { rawRegexp =>
 
-      val regexp = s"(?s)($rawRegexp)".r
+
+//      val regexp = s"(?s)($rawRegexp)".r
 //    val regexp = "CUR.*<text:.*.>R.*[<|</].*>ENT_DATE.*.+?</text:p>)".r
 //    val regexp = "(<text:span.*?>CURR.*{1,20}.+?ENT_DATE)".r
 //    val regexp = "(CUR.*.?ENT_DATE)".r
-//    val regexp = "(CUR.*R.*.?ENT_DATE)".r
+    val regexp = "(CUR.*R.*.?ENT_DATE)".r
     println(regexp)
     val row = regexp.findAllMatchIn(str).toList
     println(row)
