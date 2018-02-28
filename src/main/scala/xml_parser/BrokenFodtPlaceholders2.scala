@@ -18,7 +18,7 @@ object BrokenFodtPlaceholders2 extends App {
   pattern1.findAllMatchIn(s).foreach { matches =>
     s = s.replace(matches.toString(), s">${matches.group(2)}%%")
   }
-  val pattern2 = ">\\s*%%\\s*(<.*?>)(.*?)%%\\s*<".r
+  val pattern2 = ">\\s*%%\\s*(<.*?>){0,}(.*?)%%\\s*<".r
   val pattern3 = "<.*?>".r
   pattern2.findAllMatchIn(s).foreach { matches =>
     val line = matches.toString()
@@ -33,10 +33,16 @@ object BrokenFodtPlaceholders2 extends App {
         s = s.replace(line, s">$labels${linePattern.mkString}%%$placeholder%%<")
       else
         s = s.replace(line, s"$labels${linePattern.mkString}%%$placeholder%%<")
+    } else {
+      if (matches.toString().startsWith(">"))
+        s = s.replace(line, s">${linePattern.mkString}%%$placeholder%%<")
+      else
+        s = s.replace(line, s"${linePattern.mkString}%%$placeholder%%<")
     }
   }
 
-//  println(s)
+
+  println(s)
 
   val tempFilesDir = Paths.get(".")
   fodtToPdfAndGetPaths(tempFilesDir, s, "tmpFile")

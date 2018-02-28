@@ -13,4 +13,18 @@ object Testing extends App {
 
   println(res.count)
 
+
+  val task: Runnable = new Runnable {
+    override def run(): Unit = {
+      val threadName = Thread.currentThread.getName
+      import java.util.concurrent.TimeUnit
+      TimeUnit.SECONDS.sleep(1)
+      println("Hello " + threadName)
+    }
+  }
+  val thread = new Thread(task)
+  thread.start()
+  task.run()
+  println("Done!")
+
 }
