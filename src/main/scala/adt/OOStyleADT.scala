@@ -1,6 +1,6 @@
 package adt
 
-object OOStyleADT {
+object OOStyleADT extends App {
 
   trait Area {
     def area:Double

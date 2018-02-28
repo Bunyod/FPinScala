@@ -1,6 +1,6 @@
 package adt
 
-object FPStyleADT {
+object FPStyleADT extends App {
 
   sealed trait Shape
   case class Rectangle(width:Double,height:Double)
