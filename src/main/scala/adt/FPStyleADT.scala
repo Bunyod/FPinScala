@@ -15,7 +15,7 @@ object FPStyleADT extends App {
   }
 
   def displayArea[I](in:I)(implicit tc:Area[I]) = {
-    val ar:Double = tc.area(in)
+    val ar: Double = tc.area(in)
     println(s"Area: $ar")
   }
 
