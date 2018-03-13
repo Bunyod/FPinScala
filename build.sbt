@@ -9,6 +9,4 @@ libraryDependencies ++= Seq(
   "org.scala-lang.modules" %% "scala-xml" % "1.0.6",
   "com.artofsolving" % "jodconverter" % "2.2.1",
   "org.typelevel" %% "cats-effect" % "0.9",
-  "org.typelevel" %% "cats-effect-laws" % "0.9" % "test",
-  "com.ibm.watson.developer_cloud" % "java-sdk" % "4.2.1"
-)
+  "org.typelevel" %% "cats-effect-laws" % "0.9" % "test"
