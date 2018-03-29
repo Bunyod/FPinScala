@@ -10,3 +10,4 @@ libraryDependencies ++= Seq(
   "com.artofsolving" % "jodconverter" % "2.2.1",
   "org.typelevel" %% "cats-effect" % "0.9",
   "org.typelevel" %% "cats-effect-laws" % "0.9" % "test"
+)
