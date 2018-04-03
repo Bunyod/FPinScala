@@ -1,5 +1,4 @@
-package scala_cata
-
+package scala_cata.chp2
 
 trait Semigroup[A] {
   def combine(x: A, y: A): A
@@ -15,7 +14,3 @@ object Monoid {
 
 
 
-
-object AdavancedScalaWithCats {
-
-}

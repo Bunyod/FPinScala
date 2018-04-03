@@ -32,4 +32,10 @@ object PrimeNumbers extends App {
   val primeNums = primeStream(Stream.from(2))
   println(primeNums.take(20).toList)
 
+  //2nd approach
+  val primes2: Stream[Int] = 2 #:: Stream.iterate[Int](3)(x =>
+    (x+2 to x*2 by 2).find(i => primes2.takeWhile(p => p*p <= i)
+      .forall(i%_ > 0)).get)
+
+  primes2.take(100).foreach(println)  // 2 3 5 etc.
 }
